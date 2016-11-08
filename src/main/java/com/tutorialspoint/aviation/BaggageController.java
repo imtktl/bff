@@ -13,6 +13,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tutorialspoint.model.BaggageItem;
 import com.tutorialspoint.model.GenericResult;
 import com.tutorialspoint.model.Product;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 @Controller
 public class BaggageController {
@@ -117,6 +124,7 @@ public class BaggageController {
 	@RequestMapping(value="/bff", method=RequestMethod.GET, produces="application/json") 
     public @ResponseBody List<BaggageItem> getbaggageItems() {
 		
+		HttpURLConnectionExample http = new HttpURLConnectionExample();
 		System.out.println("Testing 1 - Send Http GET request");
 		String resp = http.sendGet();
 		
