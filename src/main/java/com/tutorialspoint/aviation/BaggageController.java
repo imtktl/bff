@@ -13,13 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tutorialspoint.model.BaggageItem;
 import com.tutorialspoint.model.GenericResult;
 import com.tutorialspoint.model.Product;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-import javax.net.ssl.HttpsURLConnection;
 
 @Controller
 public class BaggageController {
@@ -85,50 +78,9 @@ public class BaggageController {
 	
 	
 	@RequestMapping(value="/baggage/intl/items", method=RequestMethod.GET, produces="application/json") 
-    public @ResponseBody String getbaggageItems() {
-		
-    	return baggageItems;
-    	
-    }
-	
-	// HTTP GET request
-	private void sendGet() throws Exception {
-
-		String url = "https://poc-apigwy-ssl.apps.cpaaws.com/basicRestCalls/baggage/intl/items?user_key=b8e7b5d1ec53daaa93aae448b01b7543";
-		URL obj = new URL(url);
-		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-		// optional default is GET
-		con.setRequestMethod("GET");
-		con.setRequestProperty("User-Agent", "Mozilla/5.0");
-
-		int responseCode = con.getResponseCode();
-		System.out.println("\nSending 'GET' request to URL : " + url);
-		System.out.println("Response Code : " + responseCode);
-
-		BufferedReader in = new BufferedReader(
-		        new InputStreamReader(con.getInputStream()));
-		String inputLine;
-		StringBuffer response = new StringBuffer();
-
-		while ((inputLine = in.readLine()) != null) {
-			response.append(inputLine);
-		}
-		in.close();
-
-		//print result
-		System.out.println(response.toString());
-
-	}
-	
-	@RequestMapping(value="/bff", method=RequestMethod.GET, produces="application/json") 
     public @ResponseBody List<BaggageItem> getbaggageItems() {
 		
-		HttpURLConnectionExample http = new HttpURLConnectionExample();
-		System.out.println("Testing 1 - Send Http GET request");
-		String resp = http.sendGet();
-		
-    	return resp;
+    	return baggageItems;
     	
     }
 	
@@ -157,8 +109,3 @@ public class BaggageController {
 	}
 	
 }
-
-    Contact GitHub API Training Shop Blog About 
-
-    © 2016 GitHub, Inc. Terms Privacy Security Status Help 
-
